@@ -18,7 +18,7 @@ class GoogleAuth extends Component {
   })
 }
     onSignInClick = () => {
-        this.auth.signIn();
+        this.auth.signIn(this.auth.getAuthInstance().currentUser.get().getId());
     }
 
     onSignOutClick = () => {
