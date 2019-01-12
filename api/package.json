@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "json-server": "^0.14.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "json-server -p 3001 -w db.json"
   },
   "author": "",
   "license": "ISC"
