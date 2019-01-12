@@ -1,5 +1,5 @@
 {
-    "name": "twitch-tv-clone-client",
+    "name": "twitch-tv-clone",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
