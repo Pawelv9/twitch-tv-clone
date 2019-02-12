@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchStreams } from '../../actions';
+import { Link } from 'react-router-dom'; 
 
 class StreamList extends Component {
   
@@ -39,6 +40,18 @@ class StreamList extends Component {
     })
   }
 
+  renderCreate() {
+    if (this.pros.isSignedIn) {
+      return (
+        <div style={{ textAlign='right' }}>
+          <Link to="/streams/new" className="ui button primary">
+            Create Stream
+          </Link>
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <div>
@@ -46,7 +59,7 @@ class StreamList extends Component {
           <div className="ui celled list">
             {this.renderList()}    
           </div>
-        {StreamList}
+        {this.renderCreate()}
       </div>
     );
   }
@@ -55,8 +68,9 @@ class StreamList extends Component {
 mapStateOfProps = () => {
   return { 
     streams: Object.values(state.streams),
-    userId: state.auth.userId
-    };
+    userId: state.auth.userId,
+    isSignedIn: state.auth.signedIn  
+  };
 }
 
 export default connect(mapStateOfProps, { fetchStreams })(StreamList)
