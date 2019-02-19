@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchStreams } from '../../actions';
 import { Link } from 'react-router-dom'; 
@@ -26,10 +26,11 @@ class StreamList extends Component {
   }
 
   renderList() {
-    this.props.streams.map(stream => {
-      <div className="item" key={stream.id}>
+    return this.props.streams.map(stream => {
+      return (
+        <div className="item" key={stream.id}>
         {this.renderAdmin(stream)}
-        <i className="large middle aligned camera"/>
+        <i className="large middle aligned icon camera"/>
         <div className="content">
           {stream.title}
           <div className="description">
@@ -37,13 +38,14 @@ class StreamList extends Component {
           </div>
         </div>
       </div>
-    })
+      );
+    });
   }
 
   renderCreate() {
-    if (this.pros.isSignedIn) {
+    if (this.props.isSignedIn) {
       return (
-        <div style={{ textAlign='right' }}>
+        <div style={{ textAlign: 'right' }}>
           <Link to="/streams/new" className="ui button primary">
             Create Stream
           </Link>
@@ -65,12 +67,12 @@ class StreamList extends Component {
   }
 }
 
-mapStateOfProps = () => {
+const mapStateToProps = state => {
   return { 
     streams: Object.values(state.streams),
     userId: state.auth.userId,
-    isSignedIn: state.auth.signedIn  
+    isSignedIn: state.auth.isSignedIn  
   };
 }
 
-export default connect(mapStateOfProps, { fetchStreams })(StreamList)
+export default connect(mapStateToProps, { fetchStreams })(StreamList)
