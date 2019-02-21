@@ -70,7 +70,7 @@ class StreamList extends Component {
 const mapStateToProps = state => {
   return { 
     streams: Object.values(state.streams),
-    userId: state.auth.userId,
+    currentUserId: state.auth.userId,
     isSignedIn: state.auth.isSignedIn  
   };
 }
